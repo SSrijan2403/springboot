@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th = "http://www.thymeleaf.org" xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Hello, world!</title>
+</head>
+<body>
+<div class ="container text-center" >Welcome <span sec:authentication ="principal.username"></span>
+</div>
+<form th:action = "@{/logout}" method="post" class="container text-center">
+<input type="submit" value="Sign out">
+</form>
+<div class="container text-center">
+  <h3 class="container text-center">List of Customers:</h3>
+  <table class="table table-hover table-dark">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Email ID</th>
+      <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "customer : ${customerList}">
+      <td th:text = "${customer.id}">ID</td>
+      <td th:text = "${customer.userName}">User Name</td>
+      <td th:text = "${customer.email}">Email ID</td>
+      <td th:text = "${customer.role}">Role</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>
